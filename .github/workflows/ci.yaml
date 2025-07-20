@@ -19,7 +19,14 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: 17
+          distribution: temurin     # Required input
+          java-package: jdk
+          check-latest: false
+          server-id: github
+          server-username: ${{ secrets.GITHUB_ACTOR }}
+          server-password: ${{ secrets.GITHUB_TOKEN }}
+          overwrite-settings: true
 
       - name: Build & Test
         run: mvn clean verify
